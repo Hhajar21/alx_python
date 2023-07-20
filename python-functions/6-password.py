@@ -10,11 +10,3 @@ def validate_password(password):
     if ' ' in password:
         return False
     return True 
-
-validate_password = __import__('validate_password').validate_password
-
-print(validate_password("Hello123"))  # True
-print(validate_password("password"))  # False
-print(validate_password("StrongPwd"))  # False
-print(validate_password("AbCdEfG123"))  # True
-print(validate_password(" Passw0rd "))  # False
