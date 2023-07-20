@@ -4,6 +4,3 @@ def reverse_string(string):
         reversed_str += string[i]
     return reversed_str
 
-print(reverse_string("Hello"))
-print(reverse_string("Python"))
-
