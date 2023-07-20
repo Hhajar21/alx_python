@@ -1,4 +1,7 @@
 def pow(a, b):
+    if a == 0 and b < 0:
+        raise ValueError("Cannot raise 0 to a negative power")
+
     result = 1
 
     if b < 0:
@@ -11,7 +14,7 @@ def pow(a, b):
         a *= a
         b //= 2
 
-    # Round the result to 5 decimal places
-    result = round(result, 5)
+    # Round the result to 15 decimal places for better precision
+    result = round(result, 15)
 
     return result
