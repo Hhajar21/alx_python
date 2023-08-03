@@ -1,24 +1,11 @@
 #!/usr/bin/python3
-"""
-This module checks if an object is the instance of a class
-class Rectangle 
-
-"""
-
-class BaseGeometry:
-     """Represent a rectangle using BaseGeometry."""
-     def area(self):
-        raise Exception("area() is not implemented")
-
-     def integer_validator(self, name, value):
-        if not isinstance(value, int):
-            raise TypeError(f"{name} must be an integer")
-
-        if value <= 0:
-            raise ValueError(f"{name} must be greater than 0")
+"""Defines a class Rectangle that inherits from BaseGeometry."""
+BaseGeometry = __import__('5-base_geometry').BaseGeometry
 
 
 class Rectangle(BaseGeometry):
+    """Represent a rectangle using BaseGeometry."""
+
     def __init__(self, width, height):
         """Intialize a new Rectangle.
         Args:
@@ -26,15 +13,17 @@ class Rectangle(BaseGeometry):
             height (int): The height of the new Rectangle.
         """
 
-        self.integer_validator("width", width)
-        self.integer_validator("height", height)
+        super().integer_validator("width", width)
         self.__width = width
+        super().integer_validator("height", height)
         self.__height = height
 
     def area(self):
-         """Return the area of the rectangle."""
-         return self.__width * self.__height
+        """Return the area of the rectangle."""
+        return self.__width * self.__height
 
     def __str__(self):
         """Return the print() and str() representation of a Rectangle."""
-        return f"[Rectangle] {self.__width}/{self.__height}"
+        string = "[" + str(self.__class__.__name__) + "] "
+        string += str(self.__width) + "/" + str(self.__height)
+        return string
