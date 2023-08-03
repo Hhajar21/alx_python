@@ -1,3 +1,10 @@
+#!/usr/bin/python3
+"""
+This module checks if an object is the instance of a class
+class Rectangle 
+
+"""
+
 class BaseGeometry:
     def area(self):
         raise Exception("area() is not implemented")
