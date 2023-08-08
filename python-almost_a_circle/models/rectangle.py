@@ -153,4 +153,14 @@ class Rectangle(Base):
         if args:
             attrs = ["id", "width", "height", "x", "y"]
             for i, value in enumerate(args):
-                setattr(self, attrs[i], value)
+                if i == 0:
+                    setattr(self, attrs[i], value)
+                elif i < len(attrs):
+                    setattr(self, attrs[i], value)
+                else:
+                    break
+
+
+
+
+
