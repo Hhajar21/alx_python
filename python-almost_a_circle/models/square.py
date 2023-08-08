@@ -38,4 +38,10 @@ class Square(Rectangle):
         """Return a string representation of the square."""
         return "[Square] ({}) {}/{} - {}".format(self.id, self.x, self.y, self.width)
 
-# ... (other methods and attributes)
+def display(self):
+    """Display the square using '#' characters."""
+    for _ in range(self.y):
+        print()
+    for _ in range(self.size):
+        print(" " * self.x, end="")
+        print("#" * self.size)
