@@ -3,7 +3,8 @@
 Fetches the value of the X-Req-ID header from the url given 
 
 """
-import requests, sys
+import requests
+import sys
 
 def main():
     """Main function to fetch and display The X-req-Id header"""
