@@ -19,9 +19,13 @@
 # (4, 'New York')
 # (5, 'Nevada')
 
-if __name__ == '__main__':
-    import MySQLdb
-    import sys
+import MySQLdb
+import sys
+
+def main():
+    if len(sys.argv) != 4:
+        print("Usage: ./1-filter_states.py <mysql_username> <mysql_password> <database_name>")
+        return
 
     # Connect to the MySQL database
     db = MySQLdb.connect(host='localhost', port=3306,
@@ -29,10 +33,12 @@ if __name__ == '__main__':
 
     # Create a cursor and execute the query
     cur = db.cursor()
-    cur.execute("""SELECT * FROM states WHERE name
-                LIKE BINARY 'N%' ORDER BY states.id ASC""")
-
+    cur.execute("SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY states.id ASC")
+    
     # Fetch and display the query results
     rows = cur.fetchall()
     for row in rows:
         print(row)
+
+if __name__ == '__main__':
+    main()
