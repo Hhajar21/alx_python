@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
- install the flask pakage 
+ Starts a Flask web application.
 '''
 from flask import Flask
 
