@@ -29,7 +29,7 @@ def display_python_text(text):
 def display_number(n):
     return '{} is a number'.format(n)
 
-@app.route('/5-number_template/<int:number>', strict_slashes=False)
+@app.route('/number_template/<int:number>', strict_slashes=False)
 def display_number_template(number):
     return render_template('5-number.html', number=number)
 

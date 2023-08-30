@@ -34,7 +34,7 @@ def display_number_odd_or_even(n):
     if isinstance(n, int):
         return render_template('6-number_odd_or_even.html', number=n, parity='even' if n % 2 == 0 else 'odd')
     else:
-        return "Not a valid integer", 400  # Return a 400 Bad Request status
+        return "Not a valid integer", 400  
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
