@@ -11,23 +11,28 @@ def export_to_csv(user_id):
     user_url = f"{main_url}/users/{user_id}"
 
     try:
+        # Fetch todo data
         todo_response = requests.get(todo_url)
         todo_response.raise_for_status()  # Raise an exception for HTTP errors
+        todo_data = todo_response.json()
 
+        # Fetch user data
         user_response = requests.get(user_url)
         user_response.raise_for_status()
-
-        todo_data = todo_response.json()
         user_data = user_response.json()
+
+        if not todo_data:
+            print("No tasks found for this user.")
+            return
 
         # Create a list of dictionaries with the desired data
         todo_list = []
         for todo in todo_data:
             todo_dict = {
                 "USER_ID": user_id,
-                "USERNAME": user_data["username"],
-                "TASK_COMPLETED_STATUS": str(todo["completed"]),
-                "TASK_TITLE": todo["title"]
+                "USERNAME": user_data.get("username"),
+                "TASK_COMPLETED_STATUS": str(todo.get("completed")),
+                "TASK_TITLE": todo.get("title")
             }
             todo_list.append(todo_dict)
 
