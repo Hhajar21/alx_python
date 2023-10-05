@@ -1,14 +1,14 @@
 #!/usr/bin/python3
-"""Fetches information from JSONplaceholder API and exports to JSON"""
+"""fetches information from JSONplaceholder API and exports to JSON"""
 
 import json
 import requests
 import sys
 
-def export_to_json(user_id):
-    main_url = "https://jsonplaceholder.typicode.com"
-    todo_url = f"{main_url}/users/{user_id}/todos"
-    user_url = f"{main_url}/users/{user_id}"
+if __name__ == "__main__":
+    user_id = sys.argv[1]
+    todo_url = f"https://jsonplaceholder.typicode.com/users/{user_id}/todos"
+    user_url = f"https://jsonplaceholder.typicode.com/users/{user_id}"
 
     try:
         todo_response = requests.get(todo_url)
@@ -20,10 +20,17 @@ def export_to_json(user_id):
         todo_data = todo_response.json()
         user_data = user_response.json()
 
-        task_list = [{"task": task["title"], "completed": task["completed"], "username": user_data["username"]} for task in todo_data]
+        todo_list = []
+        for todo in todo_data:
+            todo_dict = {
+                "task": todo["title"],
+                "completed": todo["completed"],
+                "username": user_data["username"],
+            }
+            todo_list.append(todo_dict)
 
         with open(f"{user_id}.json", "w") as json_file:
-            json.dump({user_id: task_list}, json_file, indent=4)  # Indent for pretty formatting
+            json.dump({user_id: todo_list}, json_file, indent=4)
 
         print(f"Data exported to {user_id}.json")
 
@@ -31,10 +38,3 @@ def export_to_json(user_id):
         print(f"Error: {e}")
     except Exception as e:
         print(f"An error occurred: {e}")
-
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python3 2-export_to_JSON.py USER_ID")
-    else:
-        user_id = sys.argv[1]
-        export_to_json(user_id)
